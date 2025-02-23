@@ -67,7 +67,7 @@ impl Player {
     }
 
     fn render(&mut self, ctx: &mut BTerm) {
-        ctx.set(PSTART_OFFSET, self.y as i32, YELLOW, BLACK, to_cp437('@'));
+        ctx.set(PSTART_OFFSET, self.y as i32, RED, SKYBLUE, to_cp437('@'));
     }
 
     fn gravity_and_move(&mut self) {
@@ -107,7 +107,7 @@ impl State {
     }
 
     fn play(&mut self, ctx: &mut BTerm) {
-        ctx.cls_bg(NAVY);
+        ctx.cls_bg(SKYBLUE);
         self.frame_time += ctx.frame_time_ms;
         if self.frame_time > FRAME_DURATION {
             self.frame_time = 0.0;

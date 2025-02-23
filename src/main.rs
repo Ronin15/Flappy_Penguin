@@ -190,6 +190,7 @@ fn main() -> BError {
     let context = BTermBuilder::simple80x50()
         .with_title("Flappy Penguin")
         .with_fps_cap(FPS)
+        .with_resource_path("resources/")
         .build()?;
 
     main_loop(context, State::new())

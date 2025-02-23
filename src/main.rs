@@ -122,7 +122,7 @@ impl State {
 
         self.obstacle.render(ctx, self.player.x);
 
-        if self.player.x > self.obstacle.x as f32 {
+        if self.player.x > self.obstacle.x {
             self.score += 1;
             self.obstacle = Obstacle::new(self.player.x + SCREEN_WIDTH as f32, self.score);
         }

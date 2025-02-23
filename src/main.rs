@@ -10,6 +10,7 @@ const SCREEN_WIDTH: i32 = 80;
 const SCREEN_HEIGHT: i32 = 50;
 const FRAME_DURATION: f32 = 75.0;
 const FPS: f32 = 60.0;
+const PSTART_OFFSET: i32 = 20;
 
 struct Obstacle {
     x: f32,
@@ -43,7 +44,7 @@ impl Obstacle {
 
     fn hit_obstacle(&self, player: &Player) -> bool {
         let half_size = self.size as f32 / 2.0;
-        let does_x_match = player.x == self.x;
+        let does_x_match = player.x == self.x - PSTART_OFFSET as f32;
         let player_above_gap = player.y < self.gap_y - half_size;
         let player_below_gap = player.y > self.gap_y + half_size;
         does_x_match && (player_above_gap || player_below_gap)
@@ -66,12 +67,12 @@ impl Player {
     }
 
     fn render(&mut self, ctx: &mut BTerm) {
-        ctx.set(0, self.y as i32, YELLOW, BLACK, to_cp437('@'));
+        ctx.set(PSTART_OFFSET, self.y as i32, YELLOW, BLACK, to_cp437('@'));
     }
 
     fn gravity_and_move(&mut self) {
-        if self.velocity < 2.0 {
-            self.velocity += 0.2;
+        if self.velocity < 2.5 {
+            self.velocity += 0.5;
         }
         self.y += self.velocity;
         self.x += 1.0;
@@ -82,7 +83,7 @@ impl Player {
     }
 
     fn flap(&mut self) {
-        self.velocity = -2.0;
+        self.velocity = -2.5;
     }
 }
 

@@ -9,6 +9,7 @@ enum GameMode {
 const SCREEN_WIDTH: i32 = 80;
 const SCREEN_HEIGHT: i32 = 50;
 const FRAME_DURATION: f32 = 75.0;
+const FPS: f32 = 60.0;
 
 struct Obstacle {
     x: f32,
@@ -188,6 +189,7 @@ impl GameState for State {
 fn main() -> BError {
     let context = BTermBuilder::simple80x50()
         .with_title("Flappy Penguin")
+        .with_fps_cap(FPS)
         .build()?;
 
     main_loop(context, State::new())
